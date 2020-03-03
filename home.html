@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="body" id="body">
+    <div class="container" style="max-width: 70%;">
+
+        <!-- CHANGE PASSWORD MODAL -->
+        <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="reset" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Change Password</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fas fa-user prefix grey-text"></i>
+                                <label data-error="wrong" data-success="right" for="username">Username</label>
+                                <input type="text" id="username" name="username" class="form-control validate">
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <label data-error="wrong" data-success="right" for="oldpass">Old Password</label>
+                                <input type="password" id="oldpass" name="oldpass" class="form-control validate">
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"></i>
+                                <label data-error="wrong" data-success="right" for="newpass">New Password</label>
+                                <input type="password" id="newpass" name="newpass" class="form-control validate">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-deep-orange" type="submit">Change Password</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- LOGIN & CHANGE PASSWORD BUTTONS -->
+        <div class="col-sm-12 text-right" style="width: 100%;">
+            <div class="col-sm-1">
+                <form action="auth" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+            <div class="col-sm-3">
+                <button data-toggle="modal" data-target="#modalRegisterForm">Change Password</button>
+            </div>
+        </div>
+
+        <hr style="width: 100%; color: gray; height: 0.1px; background-color:gray;opacity: 0.5;" />
+        <!-- <br><br><br> -->
+
+        <!-- TIME-IN & TIME-OUT MODULES -->
+        <div class="row">
+            <h6 id="title">Mark Today's Attendance</h6>
+            <div class="col-sm-6" style="width: 50%;">
+                <div class="col-sm-3">
+                    <p>Time-in:</p>
+                    <p>Time-out:</p>
+                </div>
+                <div class="col-sm-3">
+                    <button class="button" onclick="timeIn()">Time In</button>
+                    <button class="button" onclick="timeOut()">Time Out</button>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <table class="table" style="width: 35%;margin-top: 0px;">
+                    <tr>
+                        <td style="border-style: none;">Time In</td>
+                        <td style="border-style: none;">Time Out</td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td id="timein">09:53:21</td>
+                            <td id="timeout">09:53:21</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <input type="checkbox" id="checkbox" checked> <label for="checkbox">Overwrite last time-out</label>
+        <hr style="width: 100%; color: gray; height: 0.5px; background-color:gray;opacity: 0.5;" />
+
+
+        <!-- VIEW DETAILED REPORT - CALENDAR MODULE -->
+        <div class="row">
+            <h6 id="title">View Detailed Report</h6>
+            <div class="col-sm-8" style="width: 50%;">
+                <div class="col-sm-2">
+                    <p>From:</p>
+                    <p>To:</p>
+                </div>
+                <div class="col-sm-6">
+                    <p>February 22, 2020</p> <input class="hidden" type="date" id="datepicker1" name="birthday"> <span id="startdate" class="glyphicon glyphicon-calendar"></span>
+                    <p>February 22, 2020</p> <input type="date" id="birthday" name="birthday">
+                    <button class="button" onclick="viewReport()">View Report</button>
+                </div>
+            </div>
+            <div class="row-sm-2">
+                <div class="col-sm-3">
+                    <p>Leaves this week:</p>
+                    <p>Violations this week:</p>
+                    <p>Hours worked this week:</p>
+                    <p>Threshold Hours this week:</p>
+                </div>
+                <div class="col-sm-1">
+                    <p>0.0</p>
+                    <p>0.24</p>
+                    <p>33:26</p>
+                    <p>37:04</p>
+                </div>
+            </div>
+        </div>
+        <hr style="width: 100%; color: gray; height: 0.5px; background-color:gray;opacity: 0.5;" />
+        <hr style="width: 100%; color: gray; height: 0.5px; background-color:gray;opacity: 0.5;" />
+
+
+        <!-- REQUEST MISSING ENTRIES MODULE -->
+        <div class="row">
+            <h6 id="title">Request Missing Entries</h6>
+            <div class="col-sm-6" style="width: 50%;">
+                <div class="col-sm-2">
+                    <p>From:</p>
+                    <p>To:</p>
+                </div>
+                <div class="col-sm-5">
+                    <p>February 22, 2020 Calendar</p>
+                    <p>February 22, 2020 Calendar</p>
+                    <button class="button" onclick="requestMissing()">Request Missing</button>
+                </div>
+            </div>
+        </div>
+        <hr style="width: 100%; color: gray; height: 0.5px; background-color:gray;opacity: 0.5;" />
+    </div>
+</body>
+<!-- SCRIPTS -->
+<script>
+    // TIME-IN CLICK HANDLER
+    function timeIn() {
+        let timein = document.getElementById('timein').innerHTML = new Date().toString().split(' ')[4];
+        fetch('/timein', {
+                method: 'POST'
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    console.log('Click was recorded');
+                    return;
+                }
+                throw new Error('Request failed.');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    // TIME-OUT CLICK HANDLER
+    function timeOut() {
+        document.getElementById('timeout').innerHTML = new Date().toString().split(' ')[4];
+        fetch('/timeout', {
+                method: 'POST'
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    console.log('Click was recorded');
+                    return;
+                }
+                throw new Error('Request failed.');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    // VIEW REPORT CLICK HANDLER
+    function viewReport() {
+        window.open("/report", "_blank");
+    }
+    // 
+    document.getElementById('startdate').onclick = function(e){
+        let datepicker = document.getElementById('datepicker1');
+        datepicker.className = '';
+        datepicker.focus().click();
+    }
+</script>
+
+</html>
