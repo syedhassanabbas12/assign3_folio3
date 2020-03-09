@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Report</title>
+    <link rel="stylesheet" href="assets/view-report.css">
+</head>
+
+<body>
+    <form name="reports" action="ViewReport.jsp" method="post">
+        <input type="hidden" name="Action" value="" />
+
+
+        <input name="fromReport" type="hidden" value="2020-02-28">
+
+
+        <input name="toReport" type="hidden" value="2020-03-05">
+
+        <input name="PreviousAction" type="hidden" value="ViewMyReport">
+
+
+        <br /><br /><br /><br />
+
+        <br><br><br>
+
+        <table width=675 height=246 border=1 align=center cellpadding=0 cellspacing=0 class=yellowtable>
+            <tr class=green>
+                <td colspan=8><strong>Attendance report for Hassan Abbas (February 28, 2020 to March 05, 2020)</strong>
+                </td>
+            </tr>
+            <tr class=green>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olivecenter>
+                <td width=12%>Day</td>
+                <td width=14%>Date</td>
+                <td width=10%>Time-in</td>
+                <td width=9%>Time-out</td>
+                <td width=13%>Hours worked</td>
+                <td width=11%>Total Hours</td>
+                <td width=17%>Threshold Hours</td>
+                <td width=8%>Leave</td>
+            </tr>
+            <tr class="blackcenter">
+                <td>Friday</td>
+                <td>February 28, 2020</td>
+                <td>09:53:21</td>
+                <td>19:07:59</td>
+                <td>09:14</td>
+                <td>09:14</td>
+                <td>09:11</td>
+                <td>&nbsp</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=4>Week's Violations = 0</td>
+                <td colspan=2>Week's Hours = 09:14</td>
+                <td colspan=2>Week's Threshold = 09:11</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class="blackcenter">
+                <td>Monday</td>
+                <td>March 02, 2020</td>
+                <td>09:01:44</td>
+                <td>18:04:19</td>
+                <td>09:02</td>
+                <td>09:02</td>
+                <td>09:00</td>
+                <td>&nbsp</td>
+            </tr>
+            <tr class="blackcenter">
+                <td>Tuesday</td>
+                <td>March 03, 2020</td>
+                <td>09:25:22</td>
+                <td>18:06:27</td>
+                <td>08:41</td>
+                <td>08:41</td>
+                <td>09:00</td>
+                <td>&nbsp</td>
+            </tr>
+            <tr class="blackcenter">
+                <td>Wednesday</td>
+                <td>March 04, 2020</td>
+                <td>09:29:46</td>
+                <td>-</td>
+                <td>00:00</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class=blackcenter>
+                <td colspan=3 align=right style=padding-right:14px>15:09:18</td>
+                <td>18:02:49</td>
+                <td>02:53</td>
+                <td>02:53</td>
+                <td>09:00</td>
+                <td>&nbsp</td>
+            </tr>
+            <tr class="blackcenter">
+                <td>Thursday</td>
+                <td>March 05, 2020</td>
+                <td>09:48:55</td>
+                <td>-</td>
+                <td>00:00</td>
+                <td>00:00</td>
+                <td>09:09</td>
+                <td>&nbsp</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=4>Week's Violations = 0.48</td>
+                <td colspan=2>Week's Hours = 20:36</td>
+                <td colspan=2>Week's Threshold = 27:00</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=4>Total Violations = 0.48</td>
+                <td colspan=4>Total Hours = 29:50</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=8>Leaves Taken= 0.0</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=8>Core Hours = 09:30:00 - 16:30:00</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

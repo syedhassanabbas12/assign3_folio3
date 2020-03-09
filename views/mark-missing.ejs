@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Missing Attendance</title>
+    <link rel="stylesheet" href="../assets/mark-missing.css">
+</head>
+
+<body>
+    <form name="missing" method="post" action="MarkMissing.jsp">
+        <table width="965">
+            <tr>
+                <td colspan=2>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="1">&nbsp;</td>
+                <td colspan=2 class="olive" align="right"><%=user%></td>
+            </tr>
+            <tr>
+                <td width="97">&nbsp;</td>
+                <td width="638">
+
+                    <table width=550 border=0 align="right" cellpadding=3 cellspacing=0>
+                        <tr>
+                            <td colspan=2 align="left" class="error"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="error"><strong><u>Note</u>: Enter time in 24-hour format to avoid
+                                    miscalculations</strong></td>
+                        </tr>
+
+
+
+                        <tr align="center">
+                            <td colspan="2">
+                                <table width="727" cellspacing="0">
+                                    <tr>
+                                        <td width="22">&nbsp;</td>
+                                        <td width="110" class="olive">Time In</td>
+                                        <td width="110" class="olive">Time Out </td>
+
+                                        <td width=20>&nbsp;</td>
+                                        <td colSpan width="400" class="olive">Request</td>
+
+                                    </tr>
+
+                                    <% for(let i=0; i<missinglist.length; i++) { %>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3><%=missinglist[i].dateString%></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox0_0> </td>
+                                            <td><input name=in0_0 type=text size=10 value=<%=missinglist[i].timein%>
+                                                    <span id="spanIn0_0"></span></td>
+                                            <td><input name=out0_0 type=text size=10 value=<%=missinglist[i].timeout%>
+                                                    <span id=spanOut0_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <%  } %>
+
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table width="500" border="0" cellpadding="1">
+                                    <tr>
+                                        <td width="287" align="right" valign="bottom">
+                                            <input name="Submit" type="button" class="greenbutton" value="Save"
+                                                onClick="beforeSave()">
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+</body>
+<script>
+    async function beforeSave() {
+        let inputs = document.forms["missing"].getElementsByTagName("input");
+        let list = [];
+        let data;
+        let MissingList = <%-JSON.stringify(missinglist);%>;
+        let isChecked = false;
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].type === "checkbox") {
+                if (inputs[i].checked) {
+                    isChecked = true;
+                    let d = new Date(MissingList[i].date).toLocaleDateString().split('/');
+                    list.push({
+                        date: d[2] + '-' + d[0] + '-' + d[1],
+                        timein: inputs[i + 1].value,
+                        timeout: inputs[i + 2].value
+                    })
+                } else {}
+            } else {}
+        }
+        data = JSON.stringify({
+            list: list,
+        })
+        // console.log('Input List data: ', data);
+        if (isChecked) {
+            let xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    close();
+                }
+            };
+            xmlHttp.open("POST", '/api/update-missing', true); // false for synchronous request
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+            xmlHttp.send(data)
+        } else alert("Can not save without checkbox");
+    }
+</script>
+
+</html>

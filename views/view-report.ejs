@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Report</title>
+    <link rel="stylesheet" href="assets/view-report.css">
+</head>
+
+<body>
+    <form name="reports" action="ViewReport.jsp" method="post">
+        <input type="hidden" name="Action" value="" />
+
+
+        <input name="fromReport" type="hidden" value="2020-03-03">
+
+
+        <input name="toReport" type="hidden" value="2020-03-05">
+
+        <input name="PreviousAction" type="hidden" value="ViewMyReport">
+
+
+        <br /><br /><br /><br />
+
+        <br><br><br><br>
+
+        <table width=675 height=246 border=1 align=center cellpadding=0 cellspacing=0 class=yellowtable>
+            <tr class=green>
+                <td colspan=8><strong>Attendance report for <%=user%> (<%= dates[0]%> to <%= dates[1]%>)</strong>
+                </td>
+            </tr>
+            <tr class=green>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olivecenter>
+                <td>Day</td>
+                <td>Date</td>
+                <td>Time-in</td>
+                <td>Time-out</td>
+                <td>Hours worked</td>
+                <td>Total Hours</td>
+                <td>Threshold Hours</td>
+                <td>Leave</td>
+            </tr>
+            <% 
+                let weeksThreshold = 9;
+                let totalHours = 0;
+                for(let i=0; i<timetable.length; i++) {
+                    weeksThreshold+=9;
+                    
+
+                    let time1 = new Date();
+                    let time2 = new Date();
+                    let splitTimein = timetable[i].timein.split(":");
+                    let splitTimeout = timetable[i].timeout.split(":");
+                    time1.setHours(splitTimein[0], splitTimein[1], splitTimein[2], 0);
+                    time2.setHours(splitTimeout[0], splitTimeout[1], splitTimeout[2], 0);
+                
+                    let diff = time2.getTime() - time1.getTime();
+                    totalHours += diff;
+                    let msec = diff;
+                    let hh = `0${Math.floor(msec / 1000 / 60 / 60)}`;
+                    msec -= hh * 1000 * 60 * 60;
+                
+                    let mm = `0${Math.floor(msec / 1000 / 60)}`;
+                    msec -= mm * 1000 * 60;
+                
+                    let ss = `0${Math.floor(msec / 1000)}`;
+                    msec -= ss * 1000;
+                    let timeStr = hh.slice(-2) + ":" + mm.slice(-2) + ":" + ss.slice(-2);
+                    %>
+            <tr class="blackcenter">
+                <td>Tuesday</td>
+                <td><%= timetable[i].date%></td>
+                <td><%= timetable[i].timein%></td>
+                <td><%= timetable[i].timeout%></td>
+                <td><%= timeStr %></td>
+                <td><%= timeStr %></td>
+                <td>09:00</td>
+                <td>&nbsp</td>
+            </tr>
+            <%  } %>
+
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=4>Week's Violations = 0.48</td>
+                <td colspan=2>Week's Hours = <%
+                    let msec = totalHours;
+                    let hh = `0${Math.floor(msec / 1000 / 60 / 60)}`;
+                    msec -= hh * 1000 * 60 * 60;
+                
+                    let mm = `0${Math.floor(msec / 1000 / 60)}`;
+                    msec -= mm * 1000 * 60;
+                
+                    let ss = `0${Math.floor(msec / 1000)}`;
+                    msec -= ss * 1000;
+                    let timeTotalStr = hh.slice(-2) + ":" + mm.slice(-2) + ":" + ss.slice(-2);
+                    %> <%=timeTotalStr%></td>
+                <td colspan=2>Week's Threshold = <%=weeksThreshold%>:00</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=4>Total Violations = 0.48</td>
+                <td colspan=4>Total Hours = <%=timeTotalStr%></td>
+            </tr>
+            <tr class=olive>
+                <td colspan=8>Leaves Taken= 0.0</td>
+            </tr>
+            <tr class=olive>
+                <td colspan=8>Core Hours = 09:30:00 - 16:30:00</td>
+            </tr>
+            <tr>
+                <td colspan=8>&nbsp;</td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+
+</html>

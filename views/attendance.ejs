@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="assets/attendance.css">
+    <link rel="stylesheet" href="assets/calendar.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td width="210px">
+                <table class="Lightgray">
+                    <tr height="90px">
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top">
+                <table width="750px" border=0 align="center" cellpadding=3 cellspacing=0>
+                    <tr>
+                        <td>
+                            <!--top most area-->
+                            <table align="right" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <table width="606">
+                                            <tr>
+                                                <td width="600" class="darkgray" align="right">Welcome, <%=username%>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="showtime" align="right"><span id="currenttime"></span></td>
+                                </tr>
+                                <tr class="error">
+                                    <td colspan=2></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=2 align="right" valign="bottom">
+                                        <a href="#" onclick="document.getElementById('reset').submit()"><strong
+                                                class="green">Change Password</strong></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" onclick="document.getElementById('logout').submit()"><strong
+                                                class="green">Log Out</strong></a>
+                                        <form action="api/auth" id="logout" method="post"></form>
+                                        <form action="change-password" id="reset" method="post"></form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div align="right">&nbsp;</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- <tr> -->
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table align="center">
+                                <tr>
+                                    <!--time in time out buttons-->
+                                    <td width="280" class="olive">
+
+                                        <table cellpadding=0 cellspacing=10 border=0 width=280>
+                                            <tr>
+                                                <td class="olive" colspan=2>Mark Today's Attendance</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="yellow" width=25%>Time-in:</td>
+                                                <td>
+                                                    <input style="width:70px" class="greenbutton" type=submit
+                                                        value="Time In" name=timein onclick="timeIn()" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="yellow" width=25%>Time-out:</td>
+                                                <td>
+
+                                                    <input style="width:70px" class="greenbutton" type=submit
+                                                        value="Time Out" name=timeout onclick="timeOut()" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><input type="checkbox" name="timeOutOverwrite"
+                                                        checked="checked" />
+                                                    <font class="Lightgray">Overwrite last time-out</font>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- </form> -->
+                                    </td>
+                                    <!--time in time out of user for today-->
+                                    <td width="268">
+                                        <table cellspacing=0>
+
+                                            <tr class="yellow">
+                                                <td width="100" height="18" align="center" valign="middle"
+                                                    class="showtime">Time In</td>
+                                                <td width="100" height="18" align="center" valign="middle"
+                                                    class="showtime">Time Out</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <hr>
+                                                <td>
+                                            </tr>
+
+                                            <tr class=green>
+                                                <td width=109 height=23 align=center valign=middle id="timein">-
+                                                    <!-- <script></script> -->
+                                                </td>
+                                                <td width=109 height=23 align=center valign=middle id="timeout">-</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <hr>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <!--view detailed report-->
+                                    <td>
+
+                                        <form name="reports" action="api/get-report" method="POST" target="_blank">
+                                            <input type="hidden" name="PreviousAction" value="ViewMyReport" />
+                                            <input type="hidden" name="Action" value="ViewMyReport" />
+                                            <input type="hidden" name="fromReport" id="fromReport" value=2020-02-27 />
+                                            <input type="hidden" name="toReport" id="toReport" value=2020-03-04 />
+                                            <table cellpadding=0 cellspacing=10 border=0>
+                                                <tr>
+                                                    <td class="olive" colspan=4>View Detailed Report</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="yellow">From: </td>
+                                                    <td class="yellow" colspan=2 width=60%>
+                                                        <span id="fromReportSpan">February 27, 2020</span> </td>
+                                                    <td class="yellow">
+                                                        <a href="#">
+                                                            <img src="assets/images/cal.gif" alt="Calendar"
+                                                                name="fromReportImage" width="15" height="12" border="0"
+                                                                align="absbottom" id="fromReportImage"></img> </a>
+                                                        <input type="date" name="from" id="from"
+                                                            onchange="fromReportHandler(event)">
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="yellow">To: </td>
+                                                    <td class="yellow" colspan=2 width=60%>
+                                                        <span id="toReportSpan">March 04, 2020</span> </td>
+                                                    <td class="yellow">
+                                                        <a href="#">
+                                                            <img src="assets/images/cal.gif" alt="Calendar"
+                                                                name="toReportImage" width="15" height="12" border="0"
+                                                                align="absmiddle" id="toReportImage">
+                                                            </img> </a>
+                                                        <input type="date" name="till" id="till"
+                                                            onchange="toReportHandler(event)">
+
+                                                    </td>
+                                                </tr>
+                                                <tr align=center>
+                                                    <td colspan=4>
+
+                                                        <input class="greenbutton" type="submit" value="View Report"
+                                                            name="viewreport" /> </td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    </td>
+                                    <!--weekly report of leaves-->
+                                    <td>
+                                        <table width="219" height="68">
+                                            <tr>
+                                                <td width="296" class="green">Leaves this week:</td>
+                                                <td width="58"><strong class="Lightgray">0.0</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="green">Violations this week:</td>
+                                                <td class="Lightgray"><strong>0</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" class="green">Hours worked this week:</td>
+                                                <td class="Lightgray"><strong>17:43</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" class="green">Threshold Hours this week:</td>
+                                                <td class="Lightgray"><strong>18:00</strong></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <hr>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+
+                                    <!--Mark missing-->
+                                    <td width="355" class="olive">
+
+                                        <form name="requestmissing" action="api/mark-missing" method="POST" target="_blank">
+                                            <input type="hidden" name="fromMissing" id="fromMissing" value=2020-02-27 />
+                                            <input type="hidden" name="toMissing" id="toMissing" value=2020-03-04 />
+                                            <input type="hidden" name="Action" value="RequestMissing" />
+                                            <input type="hidden" name="userId" value="-1" /><input type="hidden"
+                                                name="name" value="Hassan  Abbas" />
+                                            <table border=0 cellpadding=0 cellspacing=10>
+                                                <tr>
+                                                    <td class="olive" colspan=3>Request Missing Entries</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="yellow">From: </td>
+                                                    <td class="yellow">
+                                                        <span id="fromMissingSpan">February 27, 2020</span> </td>
+                                                    <td class="yellow">
+                                                        <a href="#">
+                                                            <img src="assets/images/cal.gif" alt="Calendar"
+                                                                name="fromMissingImage" width="15" height="12"
+                                                                border="0" align="absbottom"
+                                                                id="fromMissingImage"></img> </a>
+                                                        <input type="date" name="from2" id="from2"
+                                                            onchange="fromMissingHandler(event)">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="yellow">To: </td>
+                                                    <td class="yellow">
+                                                        <span id="toMissingSpan">March 04, 2020</span> </td>
+                                                    <td class="yellow">
+                                                        <a href="#">
+                                                            <img src="assets/images/cal.gif" alt="Calendar"
+                                                                name="toMissingImage" width="15" height="12" border="0"
+                                                                align="absmiddle" id="toMissingImage">
+                                                            </img> </a>
+                                                        <input type="date" name="till2" id="till2"
+                                                            onchange="toMissingHandler(event)">
+                                                    </td>
+                                                </tr>
+
+                                                <tr align=center>
+                                                    <td>&nbsp;</td>
+                                                    <td>
+
+                                                        <div align="left">
+                                                            <input type=submit style="width:95px" class="greenbutton"
+                                                                value="Request Missing" />
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+<!-- <script type="text/javascript" src="//www.turnjs.com/lib/turn.min.js "></script> -->
+<script>
+    let d = new Date();
+    let d2 = new Date();
+    d2.setDate(d.getDate() - 2);
+    document.getElementById('till').valueAsDate = d;
+    document.getElementById('till2').valueAsDate = d;
+    document.getElementById('from').valueAsDate = d2;
+    document.getElementById('from2').valueAsDate = d2;
+    document.getElementById('toMissingSpan').innerHTML = d.toDateString();
+    document.getElementById('fromMissingSpan').innerHTML = d2.toDateString();
+    document.getElementById('toReportSpan').innerHTML = d.toDateString();
+    document.getElementById('fromReportSpan').innerHTML = d2.toDateString();
+
+    function toReportHandler(e) {
+        document.getElementById('toReportSpan').innerHTML = new Date(e.target.value).toDateString();
+    }
+
+    function fromReportHandler(e) {
+        document.getElementById('fromReportSpan').innerHTML = new Date(e.target.value).toDateString();
+    }
+
+    function toMissingHandler(e) {
+        document.getElementById('toMissingSpan').innerHTML = new Date(e.target.value).toDateString();
+    }
+
+    function fromMissingHandler(e) {
+        document.getElementById('fromMissingSpan').innerHTML = new Date(e.target.value).toDateString();
+    }
+
+    getTimefromDatabase = async () => {
+        await fetch('/api/get-time', {
+                method: 'GET'
+            }).then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                document.getElementById('timein').innerHTML = data.timein;
+                document.getElementById('timeout').innerHTML = data.timeout;
+            });
+    }
+    // CALLING GET-TIME API
+    getTimefromDatabase();
+    // TIME-IN CLICK HANDLER
+    function timeIn() {
+        let timein = document.getElementById('timein').innerHTML = new Date().toString().split(' ')[4];
+        fetch('/api/timein', {
+                method: 'POST'
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    return;
+                }
+                throw new Error('Request failed.');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    // TIME-OUT CLICK HANDLER
+    function timeOut() {
+        document.getElementById('timeout').innerHTML = new Date().toString().split(' ')[4];
+        fetch('/api/timeout', {
+                method: 'POST'
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    return;
+                }
+                throw new Error('Request failed.');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
+</html>

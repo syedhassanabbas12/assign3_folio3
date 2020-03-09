@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Missing Attendance</title>
+</head>
+
+<body>
+    <form name="missing" method="post" action="MarkMissing.jsp">
+
+
+        <input name="userId" type="hidden" value="-1">
+        <input name="fromMissing" type="hidden" value="2020-02-28">
+        <input name="toMissing" type="hidden" value="2020-03-05">
+        <input name="name" type="hidden" value="Hassan  Abbas">
+        <input type="hidden" name="approvalString" value="" />
+        <input type="hidden" name="Action" value="" />
+        <table width="965">
+            <tr>
+                <td colspan=2>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="1">&nbsp;</td>
+                <td colspan=2 class="olive" align="right">Hassan Abbas </td>
+            </tr>
+            <tr>
+                <td width="97">&nbsp;</td>
+                <td width="638">
+
+                    <table width=550 border=0 align="right" cellpadding=3 cellspacing=0>
+                        <tr>
+                            <td colspan=2 align="left" class="error"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="error"><strong><u>Note</u>: Enter time in 24-hour format to avoid
+                                    miscalculations</strong></td>
+                        </tr>
+
+
+
+                        <tr align="center">
+                            <td colspan="2">
+                                <table width="727" cellspacing="0">
+                                    <tr>
+                                        <td width="22">&nbsp;</td>
+                                        <td width="110" class="olive">Time In</td>
+                                        <td width="110" class="olive">Time Out </td>
+
+                                        <td width=20>&nbsp;</td>
+                                        <td colSpan width="400" class="olive">Request</td>
+
+                                    </tr>
+
+
+                                    <input type=hidden name=datecount value=7>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Fri February 28, 2020<input type=hidden
+                                                    name=date0 value=2020-02-28|2></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox0_0><input type=hidden name=record0_0
+                                                    value=567587></td>
+                                            <td><input name=in0_0 type=text size=10 value=09:53
+                                                    onkeyup="textLimit(this);"><span id="spanIn0_0"></span></td>
+                                            <td><input name=out0_0 type=text size=10 value=19:07
+                                                    onkeyup="textLimit(this);"><span id=spanOut0_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox0_1><input type=hidden name=record0_1
+                                                    value=-1></td>
+                                            <td><input name=in0_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn0_1></span></td>
+                                            <td><input name=out0_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut0_1></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Sat February 29, 2020<input type=hidden
+                                                    name=date1 value=2020-02-29|1></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox1_0><input type=hidden name=record1_0
+                                                    value=-1></td>
+                                            <td><input name=in1_0 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn1_0></span></td>
+                                            <td><input name=out1_0 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut1_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Sun March 01, 2020<input type=hidden name=date2
+                                                    value=2020-03-01|1></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox2_0><input type=hidden name=record2_0
+                                                    value=-1></td>
+                                            <td><input name=in2_0 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn2_0></span></td>
+                                            <td><input name=out2_0 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut2_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Mon March 02, 2020<input type=hidden name=date3
+                                                    value=2020-03-02|2></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox3_0><input type=hidden name=record3_0
+                                                    value=567914></td>
+                                            <td><input name=in3_0 type=text size=10 value=09:01
+                                                    onkeyup="textLimit(this);"><span id="spanIn3_0"></span></td>
+                                            <td><input name=out3_0 type=text size=10 value=18:04
+                                                    onkeyup="textLimit(this);"><span id=spanOut3_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox3_1><input type=hidden name=record3_1
+                                                    value=-1></td>
+                                            <td><input name=in3_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn3_1></span></td>
+                                            <td><input name=out3_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut3_1></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Tue March 03, 2020<input type=hidden name=date4
+                                                    value=2020-03-03|2></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox4_0><input type=hidden name=record4_0
+                                                    value=568306></td>
+                                            <td><input name=in4_0 type=text size=10 value=09:25
+                                                    onkeyup="textLimit(this);"><span id="spanIn4_0"></span></td>
+                                            <td><input name=out4_0 type=text size=10 value=18:06
+                                                    onkeyup="textLimit(this);"><span id=spanOut4_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox4_1><input type=hidden name=record4_1
+                                                    value=-1></td>
+                                            <td><input name=in4_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn4_1></span></td>
+                                            <td><input name=out4_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut4_1></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Wed March 04, 2020<input type=hidden name=date5
+                                                    value=2020-03-04|3></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox5_0><input type=hidden name=record5_0
+                                                    value=568649></td>
+                                            <td><input name=in5_0 type=text size=10 value=09:29
+                                                    onkeyup="textLimit(this);"><span id="spanIn5_0"></span></td>
+                                            <td><input name=out5_0 type=text size=10 value=-
+                                                    onkeyup="textLimit(this);"><span id=spanOut5_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox5_1><input type=hidden name=record5_1
+                                                    value=568932></td>
+                                            <td><input name=in5_1 type=text size=10 value=15:09
+                                                    onkeyup="textLimit(this);"><span id="spanIn5_1"></span></td>
+                                            <td><input name=out5_1 type=text size=10 value=18:02
+                                                    onkeyup="textLimit(this);"><span id=spanOut5_1></span></td>
+                                            <td width=60>&nbsp;</td>
+                                            <td class=darkgray><span id=reqIn5_1></span><span
+                                                    id=reqOut5_1></span>Delete<input type=hidden name=request5_1
+                                                    value=108795 /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox5_2><input type=hidden name=record5_2
+                                                    value=-1></td>
+                                            <td><input name=in5_2 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn5_2></span></td>
+                                            <td><input name=out5_2 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut5_2></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                    <td colspan=9>
+                                        <hr>
+                                        <tr>
+                                            <td class=darkgray colspan=3>Thu March 05, 2020<input type=hidden name=date6
+                                                    value=2020-03-05|2></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox6_0><input type=hidden name=record6_0
+                                                    value=569059></td>
+                                            <td><input name=in6_0 type=text size=10 value=09:48
+                                                    onkeyup="textLimit(this);"><span id="spanIn6_0"></span></td>
+                                            <td><input name=out6_0 type=text size=10 value=-
+                                                    onkeyup="textLimit(this);"><span id=spanOut6_0></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type=checkbox name=checkBox6_1><input type=hidden name=record6_1
+                                                    value=-1></td>
+                                            <td><input name=in6_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanIn6_1></span></td>
+                                            <td><input name=out6_1 type=text size=10 onkeyup="textLimit(this);"><span
+                                                    id=spanOut6_1></span></td>
+                                            <td width=60>&nbsp;</td>
+                                        </tr>
+                                        <script language="javascript">
+                                            loadArray(missing);
+                                        </script>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table width="500" border="0" cellpadding="1">
+                                    <tr>
+                                        <td width="287" align="right" valign="bottom">
+                                            <input name="Submit" type="button" class="greenbutton" value="Save"
+                                                onClick="Action.value='Save';approvalString.value=getApprovalString(missing);return validatefields(document.missing);missing.submit();">
+                                            � </td>
+
+
+                                        <td width="71" align="right" valign="bottom">
+                                            <p>
+                                                <input name="Submit4" type="button" class="greenbutton"
+                                                    value="Delete Requests"
+                                                    onClick="Action.value='DeleteRequests';missing.submit();">
+                                            </p>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+</body>
+
+</html>
