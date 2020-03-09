@@ -1,48 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance Login</title>
-    <!-- <link rel="stylesheet" href="assets/login.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <table cellSpacing=0 cellPadding=4 align=center border=0>
-        <form name="loginForm" action="api/auth" method="POST" onsubmit="return validateForm()">
-            <tr><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr><td class=pageTitle colSpan=2>Enter Login Credentials here</td></tr>
-            <tr><td colSpan=2><hr></td></tr>
-            <tr><td class=row>Login  Name:</td>
-            <td class=select><input id="username" type=text name=username onblur=validate(this)></td></tr>
-            <tr><td class=row>Password:</td>
-            <td class=select><input id="password" onblur=validate(this) type=password name=password></td></tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr><td align=middle colSpan=2>
-                    <table>
-                    <tr><td class=row><input class=button type=submit value="LogIn" name=loginBttn></td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                        <td class=row><input class=button type=reset value=Reset name=resetBttn></td></tr></td>
-                    </table>
-            <tr><td colSpan=2><hr></td></tr>
-          </form>
-  </table>
+    <div class="jumbotron text-align">
+    </div>
+    <div class="container center">
+        <div class="box effect2">
+
+        </div>
+
+        <div class="card effect2">
+            <form action="api/auth" method="post" id="loginForm" class="form center text-center">
+                <br>
+                <img src="./assets/images/folio3.png" alt="Folio3" srcset="">
+                <br>
+                <br>
+                <br>
+                <div class="input-group col-lg-10">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="username" type="text" class="form-control" name="username" placeholder="someuser">
+                </div>
+                <br>
+                <div class="input-group col-lg-10">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="********">
+                </div>
+                <br>
+            </form>
+            <div class="input-group-inline form">
+                <button class="btn btn-success" onclick="login(this)" id="loginbtn" type="submit">Login</button>
+                <button class="btn btn-danger" onclick="reset()">Reset</button>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 <script>
-    function validateForm() {
-        let username = document.forms["loginForm"]["username"].value;
-        let pass = document.forms["loginForm"]["password"].value;
-        if (username == "" | pass == "") {
-            alert("Username/password must be filled out");
-            return false;
-        }
-        return true;
+    login = (e) => {
+        e.disabled = true;
+        document.getElementById("loginForm").submit();
+    }
+    reset = () => {
+        document.getElementById('loginbtn').disabled = false;
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
     }
 </script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+
 </html>

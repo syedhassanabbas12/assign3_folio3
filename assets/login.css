@@ -1,4 +1,99 @@
-body {
+
+/* The simplest way is to set the background size to "cover" */
+
+body{
+  background-image: url("./images/portfolio-bg-2.png");
+
+}
+
+.jumbotron {
+  background-image: url("./images/portfolio-bg-2.png");
+  /* background-size: cover; */
+  /* max-height: fit-content; */
+}
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    /* background-color:yellow; */
+}
+
+.form{
+    /* background-color: brown; */
+    text-align: center;
+}
+
+.form .input-group{
+    margin: 0 auto;
+}
+
+/* .input-group{ */
+    /* text-align: center; */
+    /* background-color: blue; */
+/* } */
+
+/* .input-group input{ */
+    /* margin: 0 auto; */
+/* } */
+
+.card{
+    width: 40%;
+    height: 350px;
+    /* border-radius: 2px;
+    border-radius: 12px; */
+    /* background-color: yellow;
+    box-shadow: black; */
+    background:#FFF;
+	margin:40px auto;
+}
+
+.effect2
+{
+  position: relative;
+}
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.effect2:after
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+/* .center {
+    width: 400px;
+    background-color: skyblue;
+} */
+
+
+
+
+
+
+/* body {
     background-color: #F8F7F3;
     background-image: url("images/simpleTitle.bmp");
     background-repeat: no-repeat;
@@ -50,4 +145,4 @@ body {
     background-color: #8BA143;
     color: #FFFFFF;
     font-weight: bold;
-}
+} */
