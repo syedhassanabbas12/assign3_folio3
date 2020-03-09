@@ -1,6 +1,11 @@
 # assign3_folio3
 Folio3 Attendance Portal
 
+
+Clone or Download repository.
+
+Run npm install.
+
 To run node server:
   node index.js
   
